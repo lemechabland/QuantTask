@@ -20,16 +20,16 @@ class TestNewtonRaphson(TestCase):
         self.assertTrue(hasattr(self.NR.func, '__call__'))
         self.assertEqual(self.NR.x0, 3)
 
-    def test_newton_raphson(self):
+    def test_newton_raphson_can_get_root(self):
         result = self.NR.newton_raphson(diff_method='central')
-        self.assertAlmostEqual(result, 3.4142135624, places=7)
+        self.assertAlmostEqual(result, 3.4142135624)
 
 
 class TestGettingResultBeforeReachingMaxIter(TestCase):
     def setUp(self):
         self.NR = NewtonRaphsonOneDim(g, 0.5)
 
-    def test_newton_raphson(self):
+    def test_newton_raphson_convergence_satisfied(self):
         result = self.NR.newton_raphson(diff_method='central')
         self.assertAlmostEqual(result, 0.87, places=2)
 

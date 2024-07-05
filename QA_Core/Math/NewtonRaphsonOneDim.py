@@ -13,7 +13,7 @@ class NewtonRaphsonOneDim:
         x = self.x0
         iter = 0
         while iter < self.max_iter:
-            if abs(self.func(x)) < self.tol:
+            if abs(self.func(x)) < self.tol or self.func(x) == 0.0:
                 return x
             x = x - self.func(x) / first_order_derivative(self.func, x, diff_method=diff_method)
             iter += 1

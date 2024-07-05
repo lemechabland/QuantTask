@@ -15,7 +15,10 @@ def first_order_derivative(f, *args, j=0, diff_method='forward', h=1e-4) -> floa
         return (f(*args) - f(*x_bwd_j.flatten())) / h
     elif diff_method == 'central':
         # Richardson's approximation when h is too small
-        return (-f(*x_fwd2_j.flatten()) + 8 * f(*x_fwd_j.flatten()) -
-                8 * f(*x_bwd_j.flatten()) + f(*x_bwd2_j.flatten())) / 12 * h
+        A = (
+                (-f(*x_fwd2_j.flatten()) + 8 * f(*x_fwd_j.flatten()) -
+                 8 * f(*x_bwd_j.flatten()) + f(*x_bwd2_j.flatten())) / (12 * h)
+             )
+        return A
     else:
         raise NullDerivative(f"{diff_method} is not 'forward', 'backward', or 'central'")
